@@ -34,12 +34,36 @@ Or install it yourself as:
 
 This Gem provides methods to create and handle request and response objects to be used in your container of choice.
 
-Sample usage:
+Simple Response usage:
 
 ```ruby
 require 'alexa_rubykit'
 response = AlexaRubykit::Response.new
 response.add_speech('Ruby is running ready!')
+response.build_response
+```
+
+If you want to utilize SSML:
+(Will add <speak></speak> tags if you forget!)
+
+```ruby
+require 'alexa_rubykit'
+response = AlexaRubykit::Response.new
+response.add_speech('Ruby is running ready!',true)
+# or
+# response.add_speech('<speak>Ruby is running ready!</speak>',true)
+response.build_response
+```
+
+To add a card to your response:
+
+```ruby
+require 'alexa_rubykit'
+response = AlexaRubykit::Response.new
+# add_card(type,title,subtitle,content)
+# or
+# add_hash_card({ :type => type, :title => title, :subtitle => subtitle, :content => content })
+response.add_card("PlainText","Card Title","Card Subtitle","This card should have some interesting content for your user.")
 response.build_response
 ```
 
